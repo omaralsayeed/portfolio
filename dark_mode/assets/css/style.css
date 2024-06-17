@@ -1,0 +1,160 @@
+/* Variables & Fonts Classes & Initial Things */
+:root {
+    --white: #DFF8EB;
+    --charcoal: #364156;
+    --blue: #011638;
+    --green: #214E34;
+    --black: #0D0C1D;
+    --light-green: #64ffda;
+    --dark-green: #01958e;
+    --lightest-navy: #233554;
+    --gray: #1a1a1a;
+}
+/* 202123 */
+* {
+    color: var(--white);
+}
+body {
+    /* background-color: #efefef; */
+    background-color: var(--gray);
+    font-size: 19px;
+}
+.dark-green {
+    color: var(--light-green);
+}
+#loading {
+    background: url('../../../assets/gif/bw.gif') no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+}
+/* Header */
+ul.nav-links li a {
+    text-decoration: none;
+    transition: .3s ease;
+    color: var(--white);
+}
+ul.nav-links li a:hover {
+    cursor: pointer;
+    color: var(--dark-green);
+}
+header span#change-theme a {
+    text-decoration: none;
+    transition: .3s ease;
+    color: var(--white);
+}
+header span#change-theme a:hover {
+    cursor: pointer;
+    color: #9ca3af;
+}
+/* Who Are You */
+/* ul.timeline {
+    list-style-type: none;
+    border-left: 2px solid #e3e3e3;
+    padding: 8em 0 8em 0;
+    margin-left: 2em;
+}
+ul.timeline li.timeline-item {
+    margin-left: -1.2em;
+}
+ul.timeline li.timeline-item button {
+    background-color: #d9d5d5;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+} */
+/* What is your experience */
+div#timeline ul#timeline-subjects li.timeline-items {
+    position: relative;
+    color: var(--blue) !important;
+    background-color: var(--white);
+    padding: 15px;
+}
+div#timeline ul#timeline-subjects li.timeline-items:hover {
+    background-color: var(--charcoal);
+    color: var(--white) !important;
+    cursor: pointer;
+}
+div#timeline ul#timeline-subjects li.timeline-items::before {
+    display: block;
+    position: absolute;
+    content: '';
+    padding: 2.9em 0.25em 0 0;
+    background-color: var(--lightest-navy);
+    left: 0px;
+    top: 0px;
+    transition: .5s ease;
+}
+ul.achievements li::marker {
+    color: var(--dark-green)
+}
+/* How Good Are You */
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0 2em 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+    header, section, footer {
+        width: 100% !important;
+    }
+    .center {
+        text-align: left;
+    }
+    div#how-good-are-you div.project-container {
+        display: block;
+    }
+    div#how-good-are-you div.project-container {
+        margin: 0;
+    }
+    header, header ul.nav-links li {
+        display: block;
+    }
+    ul.nav-links {
+        margin-top: 1em;
+        display: none;
+    }
+    ul.nav-links li {
+        margin: 0;
+        margin-bottom: 0.5em;
+    }
+    #nav-mobile {
+        display: inline-block;
+        /* text-align: right; */
+        float: right;
+    }
+    div#whats-your-experience div#timeline {
+        display: block;
+    }
+    div#how-good-are-you div.project-container div.project-details, div#how-good-are-you, div#how-good-are-you div.project-container img {
+        margin-left: 0;
+    }
+    div#how-good-are-you div.project-container img {
+        width: 100%;
+        margin-bottom: 0.6em;
+    }
+    div#how-good-are-you div.project-container div.project-details h3 {
+        font-size: 1.6em
+    }
+    div#how-good-are-you div.project-container div.project-details div.project-technologies {
+        font-size: 2.5em;
+    }
+    div.project-container div.project-details h3, div.project-container div.project-details div.project-technologies {
+        text-align: center;
+    }
+    span#change-theme {
+        display: block;
+        text-align: right;
+    }
+}
