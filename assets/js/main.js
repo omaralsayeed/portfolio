@@ -9,6 +9,21 @@ function isCalendlyEvent(e) {
     return e.origin === "https://calendly.com" && e.data.event && e.data.event.indexOf("calendly.") === 0;
 };
 
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+  // Toggle dark mode on the root element
+  if(document.documentElement.getAttribute('data-theme') === 'dark'){
+    document.documentElement.removeAttribute('data-theme');
+    document.querySelector('span.header-logo img').src = './assets/img/logo.png';
+    document.querySelector('button#theme-toggle i').className = 'bx bxs-moon';
+  } else {
+    document.querySelector('span.header-logo img').src = './assets/img/logo-dark.png';
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('button#theme-toggle i').className = 'bx bx-sun';
+  }
+});
+
 window.addEventListener("message", function(e) {
     if(isCalendlyEvent(e)) {
       /* Example to get the name of the event */

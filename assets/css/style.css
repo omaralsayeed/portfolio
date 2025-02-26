@@ -1,6 +1,7 @@
 /* Variables & Fonts Classes & Initial Things */
 :root {
-    --white: #DFF8EB;
+    /* Light mode colors */
+    --white: #f8f9fa;
     --charcoal: #364156;
     --blue: #011638;
     --green: #214E34;
@@ -9,285 +10,713 @@
     --dark-green: #01958e;
     --lightest-navy: #233554;
     --gray: #1a1a1a;
-}
-* {
+    --bg-primary: #f8f9fa;
+    --text-primary: #0D0C1D;
+    --card-bg: #ffffff;
+    --border-color: #e3e3e3;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --highlight: #01958e;
+    --timeline-bg: #011638;
+    --timeline-hover: #233554;
+  }
+  
+  [data-theme="dark"] {
+    /* Dark mode colors */
+    --bg-primary: #0D0C1D;
+    --text-primary: #f8f9fa;
+    --card-bg: #1E1E2E;
+    --border-color: #233554;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --highlight: #64ffda;
+    --timeline-bg: #233554;
+    --timeline-hover: #01958e;
+    --bg-primary-rgb: 0, 0, 0;
+  }
+  
+  * {
     box-sizing: border-box;
-    color: var(--blue);
+    color: var(--text-primary);
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
-}
-body {
-    background-color: #efefef;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body {
+    background-color: var(--bg-primary);
     overflow-x: hidden;
-}
-.mono, .mono-light, .mono-med, .mono-bold {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Typography */
+  .mono, .mono-light, .mono-med, .mono-bold {
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-style: normal;
-}
-.mono-light {
+  }
+  
+  .mono-light {
     font-weight: 300;
-}
-.mono-med {
+  }
+  
+  .mono-med {
     font-weight: 400;
-}
-.mono-bold {
+  }
+  
+  .mono-bold {
     font-weight: 600;
-}
-.sans, .sans-extra-light, .sans-light, .sans-semibold, .sans-bold, .sans-extra-bold {
+  }
+  
+  .sans, .sans-extra-light, .sans-light, .sans-semibold, .sans-bold, .sans-extra-bold {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-}
-.sans-extra-light {
+  }
+  
+  .sans-extra-light {
     font-weight: 200;
-}
-.sans-light {
+  }
+  
+  .sans-light {
     font-weight: 300;
-}
-.sans-semibold {
+  }
+  
+  .sans-semibold {
     font-weight: 600;
-}
-.sans-bold {
+  }
+  
+  .sans-bold {
     font-weight: 700;
-}
-.sans-extra-bold {
+  }
+  
+  .sans-extra-bold {
     font-weight: 800;
-}
-.dark-green {
-    color: var(--dark-green);
-}
-.center {
+  }
+  
+  .highlight {
+    color: var(--highlight);
+  }
+  
+  .center {
     text-align: center;
-}
-.display-none {
-    display: none;
-}
-#loading {
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Loading animation */
+  #loading {
     background: url('../gif/white.gif') no-repeat center center;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 9999999;
-}
-/* Header */
-header {
+    background-color: var(--bg-primary);
+  }
+  
+  /* Header */
+  header {
     position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     backdrop-filter: blur(10px);
-    font-size: 0.75em;
+    background-color: rgba(var(--bg-primary-rgb, 248, 249, 250), 0.8);
+    font-size: 1rem;
     width: 100%;
     z-index: 11;
-    padding: 20px;
-    margin-left: 15px;
-    align-items: center;
-}
-header span.header-logo img {
-    height: 3.5em;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+  }
+  
+  header span.header-logo img {
+    height: 3.5rem;
     border-radius: 15px;
-}
-ul.nav-links {
+    transition: transform 0.3s ease;
+  }
+  
+  header span.header-logo img:hover {
+    transform: scale(1.05);
+  }
+  
+  ul.nav-links {
     display: flex;
     list-style: none;
     justify-content: space-between;
-}
-ul.nav-links li {
-    /* font-size: 0.75em; */
+    align-items: center;
+  }
+  
+  ul.nav-links li {
     margin-left: 2em;
-}
-ul.nav-links li a {
+    position: relative;
+  }
+  
+  ul.nav-links li a {
     text-decoration: none;
     transition: .3s ease;
-}
-ul.nav-links li a:hover {
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+  
+  ul.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--highlight);
+    transition: width 0.3s ease;
+  }
+  
+  ul.nav-links li a:hover {
     cursor: pointer;
-    color: var(--dark-green);
-}
-span#nav-mobile label i {
-    transition: .3s ease;
-}
-#nav-mobile {
+    color: var(--highlight);
+  }
+  
+  ul.nav-links li a:hover::after {
+    width: 100%;
+  }
+  
+  /* Theme toggle */
+  #theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #theme-toggle:hover {
+    color: var(--highlight);
+    transform: rotate(20deg);
+  }
+  
+  /* Mobile navigation */
+  #nav-mobile {
     display: none;
     text-align: right;
-}
-#nav-mobile label i {
-    font-size: 2.5em;
-}
-header span#change-theme i {
-    font-size: 2em;
-}
-/* Sections */
-section {
-    padding: 20px;
-    /* font-size: 1.3em; */
-}
-/* Who Are You */
-div#who-are-you p:last-child {
-    margin: 0.8em 0;
-}
-/* ul.timeline {
-    list-style-type: none;
-    border-left: 2px solid #e3e3e3;
-    padding: 8em 0 8em 0;
-    margin-left: 2em;
-}
-ul.timeline li.timeline-item {
-    margin-left: -1.2em;
-}
-ul.timeline li.timeline-item button {
-    background-color: #d9d5d5;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-} */
-div#who-are-you, div#reach-out {
-    line-height: 1.6;
-}
-div#who-are-you, div#whats-your-experience, div#how-good-are-you, div#introduce-myself {
-    margin: 15px;
-} 
-div#who-are-you p {
-    margin-bottom: 1.5em;
-}
-div#who-are-you svg {
+  }
+  
+  #nav-mobile label i {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  #nav-mobile label i:hover {
+    color: var(--highlight);
+  }
+  
+  /* Main content */
+  section {
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  section h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: var(--highlight);
+    bottom: -10px;
+    left: 0;
+  }
+  
+  /* About section */
+  #who-are-you {
+    margin-bottom: 3rem;
+  }
+  
+  #who-are-you h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  #who-are-you h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--highlight);
+  }
+  
+  #who-are-you p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+  
+  #who-are-you svg {
     transition: 0.6s ease;
-}
-div#who-are-you svg:hover {
+    margin-right: 1rem;
+    fill: var(--text-primary);
+  }
+  
+  #who-are-you svg:hover {
     transform: scale(1.1);
-}
-/* What is your experience */
-div#timeline {
+    fill: var(--highlight);
+  }
+  
+  .social-links {
     display: flex;
-}
-div#timeline ul#timeline-subjects {
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .social-links a {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Timeline / Experience section */
+  #whats-your-experience {
+    margin-bottom: 3rem;
+  }
+  
+  #timeline {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  #timeline-subjects {
+    min-width: 200px;
     list-style-type: none;
-}
-div#timeline ul#timeline-subjects li.timeline-items {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .timeline-items {
     position: relative;
     color: var(--white) !important;
-    background-color: var(--black);
-    padding: 15px;
-}
-div#timeline ul#timeline-subjects li.timeline-items:hover {
-    background-color: var(--blue);
+    background-color: var(--timeline-bg);
+    padding: 1rem;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-items.active {
+    border-left: 3px solid var(--highlight);
+    background-color: var(--timeline-hover);
+  }
+  
+  .timeline-items:hover {
+    background-color: var(--timeline-hover);
     cursor: pointer;
-}
-div#timeline ul#timeline-subjects li.timeline-items::before {
-    display: block;
-    position: absolute;
-    content: '';
-    padding: 3.15em 0.25em 0 0;
-    background-color: var(--lightest-navy);
-    left: 0px;
-    top: 0px;
-    transition: .5s ease;
-}
-div#timeline ul#timeline-subjects li.timeline-items:hover::before {
-    background-color: var(--dark-green);
-}
-div#timeline span#experience {
-    margin-left: 4em;
-}
-ul.achievements li::marker {
-    color: var(--dark-green)
-}
-ul.achievements li {
-    font-size: 0.8em;
-    text-align: left;
-}
-/* How Good Are You */
-div#how-good-are-you div.project-container {
+  }
+  
+  #experience {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    flex-grow: 1;
+  }
+  
+  #experience h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  #experience h4 {
+    color: var(--highlight);
+    margin-bottom: 1rem;
+  }
+  
+  #experience p {
+    margin-bottom: 1rem;
+  }
+  
+  .achievements {
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .achievements li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .achievements li::marker {
+    color: var(--highlight);
+  }
+  
+  /* Projects section */
+  #how-good-are-you {
+    margin-bottom: 3rem;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .project-container {
     display: flex;
-    /* margin: 0 0 2em 2em; */
-}
-div#how-good-are-you div.project-container div.project-details {
-    margin-left: 2em;
-}
-div#how-good-are-you div.project-container img {
+    flex-direction: column;
+    background-color: var(--card-bg);
     border-radius: 10px;
-    transition: all .4s ease;
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    aspect-ratio: 4 / 3; /* Ensures the aspect ratio is maintained */
-    margin-left: 0.6em;
-}
-div#how-good-are-you div.project-container img:hover {
-    transform: scale(1.1);
-}
-div#how-good-are-you div.project-container.left {
-    margin: 0;
-    justify-content: space-between;
-}
-div.project-container div.project-details div.project-technologies {
-    font-size: 1.6em;
-}
-/* Footer */
-footer {
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .project-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+  }
+  
+  .project-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.4s ease;
+  }
+  
+  .project-container:hover img {
+    transform: scale(1.05);
+  }
+  
+  .project-details {
+    padding: 1.5rem;
+  }
+  
+  .project-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .project-technologies {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .project-technologies span {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+  }
+  
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .project-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--highlight);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .project-links a:hover {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+  }
+  
+  /* Contact section */
+  #reach-out {
+    margin-bottom: 3rem;
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--highlight);
+  }
+  
+  .form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  button[type="submit"] {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: transparent;
+    color: var(--highlight);
+    box-shadow: inset 0 0 0 2px var(--highlight);
+  }
+  
+  /* Footer */
+  footer {
     display: flex;
     justify-content: center;
-    margin: 2em 0 2em 0;
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 768px) {
-    header, section, footer {
-        width: 100% !important;
+    align-items: center;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  footer p {
+    margin-bottom: 1rem;
+  }
+  
+  /* Mobile responsive styles */
+  @media only screen and (max-width: 991px) {
+    section h2 {
+      font-size: 2rem;
     }
-    .center {
-        text-align: left;
+  
+    #who-are-you h1 {
+      font-size: 2.5rem;
     }
-    div#how-good-are-you div.project-container {
-        display: block;
+  
+    #who-are-you h2 {
+      font-size: 1.8rem;
     }
-    div#how-good-are-you div.project-container {
-        margin: 0;
+    
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    header, header ul.nav-links li {
-        display: block;
+  }
+  
+  /* Tablet responsive styles */
+  @media only screen and (max-width: 768px) {
+    body {
+      font-size: 15px;
     }
-    ul.nav-links {
-        margin-top: 1em;
-        display: none;
+    
+    header {
+      padding: 1rem;
     }
-    ul.nav-links li {
-        margin: 0;
-        margin-bottom: 0.5em;
-    }
+    
     #nav-mobile {
-        display: inline-block;
-        /* text-align: right; */
-        float: right;
+      display: block;
     }
-    div#whats-your-experience div#timeline {
-        display: block;
+    
+    ul.nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--card-bg);
+      box-shadow: 0 5px 15px var(--shadow-color);
+      padding: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    div#how-good-are-you div.project-container div.project-details, div#how-good-are-you, div#how-good-are-you div.project-container img {
-        margin-left: 0;
+    
+    ul.nav-links.show {
+      display: flex;
     }
-    div#how-good-are-you div.project-container img {
-        width: 100%;
-        margin-bottom: 0.6em;
+    
+    ul.nav-links li {
+      margin: 0.5rem 0;
+      width: 100%;
     }
-    div#how-good-are-you div.project-container div.project-details h3 {
-        font-size: 1.6em
+    
+    ul.nav-links li a {
+      display: block;
+      padding: 0.5rem 0;
     }
-    div#how-good-are-you div.project-container div.project-details div.project-technologies {
-        font-size: 2.5em;
+    
+    #timeline {
+      flex-direction: column;
     }
-    div.project-container div.project-details h3, div.project-container div.project-details div.project-technologies {
-        text-align: center;
+    
+    #timeline-subjects {
+      display: flex;
+      overflow-x: auto;
+      min-width: 100%;
+      margin-bottom: 1rem;
     }
-    span#change-theme {
-        display: block;
-        text-align: right;
+    
+    .timeline-items {
+      min-width: 150px;
+      text-align: center;
+      border-left: none;
+      border-bottom: 3px solid transparent;
     }
-}
+    
+    .timeline-items.active {
+      border-left: none;
+      border-bottom: 3px solid var(--highlight);
+    }
+    
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Mobile responsive styles */
+  @media only screen and (max-width: 576px) {
+    section {
+      padding: 2rem 0;
+    }
+    
+    #who-are-you h1 {
+      font-size: 2rem;
+    }
+    
+    #who-are-you h2 {
+      font-size: 1.5rem;
+    }
+    
+    .social-links {
+      flex-wrap: wrap;
+    }
+    
+    .project-container img {
+      height: 180px;
+    }
+    
+    .contact-form {
+      padding: 1.5rem;
+    }
+  }
+  
+  /* Animation classes */
+  .fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.8s ease-in-out;
+  }
+  
+  .slide-left {
+    animation: slideLeft 0.8s ease-in-out;
+  }
+  
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Utility classes */
+  .display-none {
+    display: none;
+  }
+  
+  .show {
+    display: block !important;
+  }
+  
+  /* Print styles for resume */
+  @media print {
+    header, 
+    #how-good-are-you, 
+    #reach-out, 
+    footer, 
+    #theme-toggle, 
+    #nav-mobile {
+      display: none !important;
+    }
+    
+    body {
+      background-color: white;
+      color: black;
+    }
+    
+    section {
+      padding: 1rem 0;
+    }
+    
+    #who-are-you, 
+    #whats-your-experience {
+      page-break-inside: avoid;
+    }
+  }
