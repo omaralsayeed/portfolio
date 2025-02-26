@@ -10,7 +10,7 @@
     --dark-green: #01958e;
     --lightest-navy: #233554;
     --gray: #1a1a1a;
-    --bg-primary: #f8f9fa;
+    --bg-primary: #eeeeee;
     --text-primary: #0D0C1D;
     --card-bg: #ffffff;
     --border-color: #e3e3e3;
@@ -417,6 +417,7 @@
     gap: 0.5rem;
     margin-top: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
   
   .project-technologies span {
@@ -520,6 +521,9 @@
     padding: 2rem 0;
     text-align: center;
     border-top: 1px solid var(--border-color);
+  }
+  .project-technologies i {
+    font-size: 4em;
   }
   
   footer p {

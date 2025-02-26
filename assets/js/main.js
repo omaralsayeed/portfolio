@@ -126,7 +126,9 @@ const technologiesIcon = {
     javascript: `<i class='bx bxl-javascript'></i>`,
     php: `<i class='bx bxl-php'></i>`,
     mysql: `<i class='bx bx-data' ></i>`,
-    mongo: `<i class='bx bxl-mongodb' ></i>`
+    mongo: `<i class='bx bxl-mongodb' ></i>`,
+    node: `<i class='bx bxl-nodejs'></i>`,
+    postgres: `<i class='bx bxl-postgresql'></i>`
 }
 
 const projects = [
@@ -134,15 +136,14 @@ const projects = [
         title: 'Chemistry Arena',
         link: 'http://chemistry-arena.com',
         images: [
-            './assets/img/projects/chemistry-arena.jpg',
-            './assets/img/projects/chemistry-arena-admin-panel.png',
+            './assets/img/projects/dd39ae17-0143-4d97-9633-837ca5587699.png',
+            './assets/img/projects/fcc5e298-0e5f-452b-a893-710ad6febe40.png',
         ],
         description: '',
         technologies: [
             'javascript',
-            'mysql',
-            'php',
-            'jquery'
+            'postgres',
+            'node',
         ]
     },
     {
